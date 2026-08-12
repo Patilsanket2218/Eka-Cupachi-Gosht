@@ -7,7 +7,7 @@
   --ink-soft:#5B4F3D;
   --rust:#C97C3D;
   --rust-dark:#A85F27;
-  --font-dev:'Yatra One', cursive;
+  --font-dev:'Noto Sans Devanagari', sans-serif;
   --font-display:'Rozha One', serif;
   --font-hand:'Caveat', cursive;
   --font-body:'Poppins', sans-serif;
@@ -79,7 +79,7 @@ body{
   font-family:var(--font-dev);
   color:var(--cream);
   font-size:1.6rem;
-  letter-spacing:.05em;
+  letter-spacing:0;
   animation:pltext 1.8s ease-in-out infinite;
 }
 @keyframes pltext{
@@ -244,11 +244,12 @@ body{
   margin:6px 0 26px;
 }
 .hero-tagline{
-  font-family:var(--font-hand);
+  font-family:'Noto Sans Devanagari', sans-serif;
   font-size:1.7rem;
   color:var(--ink-soft);
-  line-height:1.3;
+  line-height:1.5;
   margin-bottom:32px;
+  letter-spacing:0;
 }
 .hero-cta-row{
   display:flex;
@@ -346,8 +347,7 @@ body{
 .ring-right{width:300px; height:300px; bottom:-100px; right:-100px; border-color:var(--khaki);}
 .story-kicker{
   font-size:.8rem;
-  letter-spacing:.35em;
-  text-transform:uppercase;
+  letter-spacing:0;
   color:var(--rust-dark);
   margin-bottom:12px;
 }
@@ -406,8 +406,7 @@ body{
 }
 .section-kicker{
   font-size:.8rem;
-  letter-spacing:.35em;
-  text-transform:uppercase;
+  letter-spacing:0;
   color:var(--rust-dark);
   margin-bottom:10px;
 }
@@ -581,6 +580,31 @@ body{
   font-size:.8rem;
   color:var(--khaki);
   margin:0;
+}
+
+
+/* MARATHI / DEVANAGARI TYPOGRAPHY */
+.brand-devanagari,
+.hero-title,
+.story-quote,
+.hero-tagline,
+.story-kicker,
+.story-body,
+.section-kicker,
+.section-title,
+.menu-tabs .nav-link,
+.menu-table-head,
+.promise-section .section-title,
+.site-nav .nav-link,
+.footer-brand,
+.veg-badge {
+  font-family:'Noto Sans Devanagari', sans-serif;
+  letter-spacing:normal;
+}
+
+.story-body,
+.hero-tagline {
+  word-spacing:normal;
 }
 
 @media (max-width:768px){
