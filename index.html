@@ -15,6 +15,20 @@
 
 <body>
 
+  <div class="preloader" id="preloader">
+    <svg class="preloader-cup" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <ellipse class="pl-saucer" cx="60" cy="96" rx="42" ry="8"></ellipse>
+      <path class="pl-cup" d="M28 46h56l-6 34a12 12 0 0 1-12 10H46a12 12 0 0 1-12-10Z"></path>
+      <path class="pl-handle" d="M84 54c14-2 18 8 14 16-3 7-11 9-16 8"></path>
+      <g class="pl-steam">
+        <path class="pl-s1" d="M46 40c-6-8 4-12-2-22"></path>
+        <path class="pl-s2" d="M60 40c-6-8 4-12-2-22"></path>
+        <path class="pl-s3" d="M74 40c-6-8 4-12-2-22"></path>
+      </g>
+    </svg>
+    <p class="preloader-text">एका कपाची गोष्ट...</p>
+  </div>
+
   <div class="grain-overlay"></div>
 
   <nav class="navbar navbar-expand-lg fixed-top site-nav" id="siteNav">
@@ -31,6 +45,7 @@
           <li class="nav-item"><a class="nav-link" href="#story">गोष्ट</a></li>
           <li class="nav-item"><a class="nav-link" href="#menu">मेन्यू</a></li>
           <li class="nav-item"><a class="nav-link" href="#promise">आमचं वचन</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">गॅलरी</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">संपर्क</a></li>
         </ul>
       </div>
@@ -125,26 +140,27 @@
         <div class="tab-pane fade show active" id="tab-chai">
           <div class="menu-card-panel">
             <div class="menu-table-head">
+              <span class="col-thumb-spacer"></span>
               <span class="col-name">प्रकार</span>
               <span class="col-size">S</span>
               <span class="col-size">M</span>
               <span class="col-size">L</span>
             </div>
-            <div class="menu-row"><span class="col-name">Chai</span><span class="col-size">₹10</span><span
+            <div class="menu-row"><img class="menu-thumb" src="assets/Chai/Chai.jpg" alt="Chai" loading="lazy"><span class="col-name">Chai</span><span class="col-size">₹10</span><span
                 class="col-size">₹15</span><span class="col-size">₹20</span></div>
-            <div class="menu-row"><span class="col-name">Masala</span><span class="col-size">₹10</span><span
+            <div class="menu-row"><img class="menu-thumb" src="assets/Chai/MasalaChai.jpg" alt="Masala Chai" loading="lazy"><span class="col-name">Masala</span><span class="col-size">₹10</span><span
                 class="col-size">₹15</span><span class="col-size">₹20</span></div>
-            <div class="menu-row"><span class="col-name">Elaichi</span><span class="col-size">₹10</span><span
+            <div class="menu-row"><img class="menu-thumb" src="assets/Chai/ElaichiChai.jpg" alt="Elaichi Chai" loading="lazy"><span class="col-name">Elaichi</span><span class="col-size">₹10</span><span
                 class="col-size">₹15</span><span class="col-size">₹20</span></div>
-            <div class="menu-row"><span class="col-name">Adrak</span><span class="col-size">₹10</span><span
+            <div class="menu-row"><img class="menu-thumb" src="assets/Chai/AdrakChai.jpg" alt="Adrak Chai" loading="lazy"><span class="col-name">Adrak</span><span class="col-size">₹10</span><span
                 class="col-size">₹15</span><span class="col-size">₹20</span></div>
-            <div class="menu-row"><span class="col-name">Chocolate</span><span class="col-size">₹15</span><span
+            <div class="menu-row"><img class="menu-thumb" src="assets/Chai/ChocolateChai.jpg" alt="Chocolate Chai" loading="lazy"><span class="col-name">Chocolate</span><span class="col-size">₹15</span><span
                 class="col-size">₹20</span><span class="col-size">&mdash;</span></div>
-            <div class="menu-row"><span class="col-name">Black</span><span class="col-size">₹25</span><span
+            <div class="menu-row"><img class="menu-thumb" src="assets/Chai/BlackTea.jpg" alt="Black Tea" loading="lazy"><span class="col-name">Black</span><span class="col-size">₹25</span><span
                 class="col-size">&mdash;</span><span class="col-size">&mdash;</span></div>
-            <div class="menu-row"><span class="col-name">Lemon</span><span class="col-size">₹25</span><span
+            <div class="menu-row"><img class="menu-thumb" src="assets/Chai/LemonTea.jpg" alt="Lemon Tea" loading="lazy"><span class="col-name">Lemon</span><span class="col-size">₹25</span><span
                 class="col-size">&mdash;</span><span class="col-size">&mdash;</span></div>
-            <div class="menu-row"><span class="col-name">Eatable (With Any Flavour)</span><span
+            <div class="menu-row"><img class="menu-thumb" src="assets/Chai/EatableTea.jpg" alt="Eatable Tea" loading="lazy"><span class="col-name">Eatable (With Any Flavour)</span><span
                 class="col-size">₹39</span><span class="col-size">&mdash;</span><span class="col-size">&mdash;</span>
             </div>
           </div>
@@ -152,57 +168,57 @@
 
         <div class="tab-pane fade" id="tab-coffee">
           <div class="menu-card-panel simple-list">
-            <div class="menu-row"><span class="col-name">Coffee (Small)</span><span class="col-price">₹20</span></div>
-            <div class="menu-row"><span class="col-name">Coffee (Medium)</span><span class="col-price">₹30</span></div>
-            <div class="menu-row"><span class="col-name">Coffee (Large)</span><span class="col-price">₹40</span></div>
-            <div class="menu-row"><span class="col-name">Cappuccino</span><span class="col-price">₹50</span></div>
-            <div class="menu-row"><span class="col-name">Cold Coffee</span><span class="col-price">₹60</span></div>
-            <div class="menu-row"><span class="col-name">Chocolate Coffee</span><span class="col-price">₹60</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Coffee/Coffee(Small,Medium,Large).jpg" alt="Coffee Small" loading="lazy"><span class="col-name">Coffee (Small)</span><span class="col-price">₹20</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Coffee/Coffee(Small,Medium,Large).jpg" alt="Coffee Medium" loading="lazy"><span class="col-name">Coffee (Medium)</span><span class="col-price">₹30</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Coffee/Coffee(Small,Medium,Large).jpg" alt="Coffee Large" loading="lazy"><span class="col-name">Coffee (Large)</span><span class="col-price">₹40</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Coffee/Cappuccino.jpg" alt="Cappuccino" loading="lazy"><span class="col-name">Cappuccino</span><span class="col-price">₹50</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Coffee/ColdCoffee.jpg" alt="Cold Coffee" loading="lazy"><span class="col-name">Cold Coffee</span><span class="col-price">₹60</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Coffee/ChocolateCoffee.jpg" alt="Chocolate Coffee" loading="lazy"><span class="col-name">Chocolate Coffee</span><span class="col-price">₹60</span></div>
           </div>
         </div>
 
         <div class="tab-pane fade" id="tab-sandwich">
           <div class="menu-card-panel simple-list">
-            <div class="menu-row"><span class="col-name">Toast Sandwich</span><span class="col-price">₹40</span></div>
-            <div class="menu-row"><span class="col-name">Cheese Sandwich</span><span class="col-price">₹50</span></div>
-            <div class="menu-row"><span class="col-name">Masala Sandwich</span><span class="col-price">₹60</span></div>
-            <div class="menu-row"><span class="col-name">Cheese Masala Toast</span><span class="col-price">₹60</span>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Sandwich/ToastSandwich.jpg" alt="Toast Sandwich" loading="lazy"><span class="col-name">Toast Sandwich</span><span class="col-price">₹40</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Sandwich/CheeseSandwich.jpg" alt="Cheese Sandwich" loading="lazy"><span class="col-name">Cheese Sandwich</span><span class="col-price">₹50</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Sandwich/MasalaSandwich.jpg" alt="Masala Sandwich" loading="lazy"><span class="col-name">Masala Sandwich</span><span class="col-price">₹60</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Sandwich/CheeseMasalaToast.jpg" alt="Cheese Masala Toast" loading="lazy"><span class="col-name">Cheese Masala Toast</span><span class="col-price">₹60</span>
             </div>
-            <div class="menu-row"><span class="col-name">Paneer Tikka</span><span class="col-price">₹80</span></div>
-            <div class="menu-row"><span class="col-name">Garlic Bread</span><span class="col-price">₹60</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Sandwich/PaneerTikkaSandwich.jpg" alt="Paneer Tikka Sandwich" loading="lazy"><span class="col-name">Paneer Tikka</span><span class="col-price">₹80</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Sandwich/GarlicBread.jpg" alt="Garlic Bread" loading="lazy"><span class="col-name">Garlic Bread</span><span class="col-price">₹60</span></div>
           </div>
         </div>
 
         <div class="tab-pane fade" id="tab-burger">
           <div class="menu-card-panel simple-list">
-            <div class="menu-row"><span class="col-name">Aloo Tikki Burger</span><span class="col-price">₹40
+            <div class="menu-row"><img class="menu-thumb" src="assets/Burger/AlooTikkiBurger.jpg" alt="Aloo Tikki Burger" loading="lazy"><span class="col-name">Aloo Tikki Burger</span><span class="col-price">₹40
                 <small>(Mini ₹30)</small></span></div>
-            <div class="menu-row"><span class="col-name">Aloo Tikki Cheese Burger</span><span class="col-price">₹50
+            <div class="menu-row"><img class="menu-thumb" src="assets/Burger/AlooTikkiCheeseBurger.jpg" alt="Aloo Tikki Cheese Burger" loading="lazy"><span class="col-name">Aloo Tikki Cheese Burger</span><span class="col-price">₹50
                 <small>(Mini ₹35)</small></span></div>
-            <div class="menu-row"><span class="col-name">Veggies Burger</span><span class="col-price">₹40 <small>(Mini
+            <div class="menu-row"><img class="menu-thumb" src="assets/Burger/VeggiesBurge.jpg" alt="Veggies Burger" loading="lazy"><span class="col-name">Veggies Burger</span><span class="col-price">₹40 <small>(Mini
                   ₹30)</small></span></div>
-            <div class="menu-row"><span class="col-name">Veggies Cheese Burger</span><span class="col-price">₹50
+            <div class="menu-row"><img class="menu-thumb" src="assets/Burger/VeggiesCheeseBurge.jpg" alt="Veggies Cheese Burger" loading="lazy"><span class="col-name">Veggies Cheese Burger</span><span class="col-price">₹50
                 <small>(Mini ₹35)</small></span></div>
-            <div class="menu-row"><span class="col-name">Korean Burger</span><span class="col-price">₹60</span></div>
-            <div class="menu-row"><span class="col-name">Korean Cheese Burger</span><span class="col-price">₹70</span>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Burger/KoreanBurger.jpg" alt="Korean Burger" loading="lazy"><span class="col-name">Korean Burger</span><span class="col-price">₹60</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Burger/KoreanCheeseBurger.jpg" alt="Korean Cheese Burger" loading="lazy"><span class="col-name">Korean Cheese Burger</span><span class="col-price">₹70</span>
             </div>
           </div>
         </div>
 
         <div class="tab-pane fade" id="tab-maggi">
           <div class="menu-card-panel simple-list">
-            <div class="menu-row"><span class="col-name">Regular Maggi</span><span class="col-price">₹30</span></div>
-            <div class="menu-row"><span class="col-name">Veggies Maggi</span><span class="col-price">₹40</span></div>
-            <div class="menu-row"><span class="col-name">Cheese Maggi</span><span class="col-price">₹50</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Maggi/NormalMaggi.jpg" alt="Regular Maggi" loading="lazy"><span class="col-name">Regular Maggi</span><span class="col-price">₹30</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Maggi/VeggiesMaggi.jpg" alt="Veggies Maggi" loading="lazy"><span class="col-name">Veggies Maggi</span><span class="col-price">₹40</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Maggi/CheeseMaggi.jpg" alt="Cheese Maggi" loading="lazy"><span class="col-name">Cheese Maggi</span><span class="col-price">₹50</span></div>
           </div>
         </div>
 
         <div class="tab-pane fade" id="tab-fries">
           <div class="menu-card-panel simple-list">
-            <div class="menu-row"><span class="col-name">Salted Fries</span><span class="col-price">₹40</span></div>
-            <div class="menu-row"><span class="col-name">Peri Peri Fries</span><span class="col-price">₹50</span></div>
-            <div class="menu-row"><span class="col-name">Cheese Fries</span><span class="col-price">₹60</span></div>
-            <div class="menu-row"><span class="col-name">Japanese Fries</span><span class="col-price">₹70</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Maggi/Fries/SaltedFries.jpg" alt="Salted Fries" loading="lazy"><span class="col-name">Salted Fries</span><span class="col-price">₹40</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Maggi/Fries/PeriPeriFries.jpg" alt="Peri Peri Fries" loading="lazy"><span class="col-name">Peri Peri Fries</span><span class="col-price">₹50</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Maggi/Fries/CheeseFries.jpg" alt="Cheese Fries" loading="lazy"><span class="col-name">Cheese Fries</span><span class="col-price">₹60</span></div>
+            <div class="menu-row"><img class="menu-thumb" src="assets/Maggi/Fries/JapaneseFries.jpg" alt="Japanese Fries" loading="lazy"><span class="col-name">Japanese Fries</span><span class="col-price">₹70</span></div>
           </div>
         </div>
 
@@ -270,6 +286,54 @@
             </div>
             <p>Warm Atmosphere</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery-section">
+    <div class="parallax-glow glow-1" data-speed="0.2"></div>
+    <div class="parallax-glow glow-2" data-speed="0.35"></div>
+    <div class="container">
+      <p class="section-kicker text-center">आमच्या ताटातलं जग</p>
+      <h2 class="section-title text-center">फोटो गॅलरी</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item big reveal-tilt">
+          <img src="assets/Chai/MasalaChai.jpg" alt="Masala Chai" loading="lazy">
+          <span class="gallery-cap">Masala Chai</span>
+        </div>
+        <div class="gallery-item reveal-tilt">
+          <img src="assets/Coffee/Cappuccino.jpg" alt="Cappuccino" loading="lazy">
+          <span class="gallery-cap">Cappuccino</span>
+        </div>
+        <div class="gallery-item reveal-tilt">
+          <img src="assets/Sandwich/GarlicBread.jpg" alt="Garlic Bread" loading="lazy">
+          <span class="gallery-cap">Garlic Bread</span>
+        </div>
+        <div class="gallery-item reveal-tilt">
+          <img src="assets/Burger/KoreanCheeseBurger.jpg" alt="Korean Cheese Burger" loading="lazy">
+          <span class="gallery-cap">Korean Cheese Burger</span>
+        </div>
+        <div class="gallery-item tall reveal-tilt">
+          <img src="assets/Maggi/Fries/PeriPeriFries.jpg" alt="Peri Peri Fries" loading="lazy">
+          <span class="gallery-cap">Peri Peri Fries</span>
+        </div>
+        <div class="gallery-item reveal-tilt">
+          <img src="assets/Chai/ElaichiChai.jpg" alt="Elaichi Chai" loading="lazy">
+          <span class="gallery-cap">Elaichi Chai</span>
+        </div>
+        <div class="gallery-item reveal-tilt">
+          <img src="assets/Coffee/ColdCoffee.jpg" alt="Cold Coffee" loading="lazy">
+          <span class="gallery-cap">Cold Coffee</span>
+        </div>
+        <div class="gallery-item reveal-tilt">
+          <img src="assets/Maggi/CheeseMaggi.jpg" alt="Cheese Maggi" loading="lazy">
+          <span class="gallery-cap">Cheese Maggi</span>
+        </div>
+        <div class="gallery-item reveal-tilt">
+          <img src="assets/Sandwich/PaneerTikkaSandwich.jpg" alt="Paneer Tikka Sandwich" loading="lazy">
+          <span class="gallery-cap">Paneer Tikka Sandwich</span>
         </div>
       </div>
     </div>
