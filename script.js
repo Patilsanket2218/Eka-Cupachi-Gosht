@@ -86,8 +86,8 @@ galleryItems.forEach(item => {
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
     const state = galleryState.get(img);
-    state.rx = (py * -12).toFixed(2);
-    state.ry = (px * 12).toFixed(2);
+    state.rx = (py * -8).toFixed(2);
+    state.ry = (px * 8).toFixed(2);
     applyGalleryTransform(img, state);
   });
 
@@ -100,9 +100,7 @@ galleryItems.forEach(item => {
 });
 
 function applyGalleryTransform(img, state) {
-  img.style.setProperty('--gp-ty', `${state.ty}px`);
-  img.style.setProperty('--gp-rx', `${state.rx}deg`);
-  img.style.setProperty('--gp-ry', `${state.ry}deg`);
+  img.style.transform = `scale(1.08) translateY(${state.ty}px) rotateX(${state.rx}deg) rotateY(${state.ry}deg)`;
 }
 
 function updateGalleryParallax() {
@@ -113,7 +111,7 @@ function updateGalleryParallax() {
     const rect = item.getBoundingClientRect();
     if (rect.bottom < -100 || rect.top > vh + 100) return; // skip offscreen items
     const centerOffset = (rect.top + rect.height / 2) - vh / 2;
-    const ty = (centerOffset / vh) * 34; // noticeably stronger drift, ~±17px each way
+    const ty = (centerOffset / vh) * 24; // gentle drift, ~±12px each way
     const state = galleryState.get(img);
     state.ty = ty.toFixed(2);
     applyGalleryTransform(img, state);
@@ -128,19 +126,6 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 updateGalleryParallax();
-
-// CURSOR SPOTLIGHT that follows the mouse across the gallery grid
-const galleryGrid = document.querySelector('.gallery-grid');
-const gallerySpotlight = document.querySelector('.gallery-spotlight');
-if (galleryGrid && gallerySpotlight) {
-  galleryGrid.addEventListener('mousemove', e => {
-    const rect = galleryGrid.getBoundingClientRect();
-    const sx = ((e.clientX - rect.left) / rect.width) * 100;
-    const sy = ((e.clientY - rect.top) / rect.height) * 100;
-    gallerySpotlight.style.setProperty('--sx', `${sx}%`);
-    gallerySpotlight.style.setProperty('--sy', `${sy}%`);
-  });
-}
 
 
 
