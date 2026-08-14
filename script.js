@@ -41,6 +41,94 @@ function onScroll(){
 window.addEventListener('scroll', onScroll, { passive:true });
 onScroll();
 
+// SCROLL-REVEAL for gallery items (safe-by-default: elements are visible in CSS
+// already; JS only ADDS the hidden starting class, so if this script fails to
+// run on a live host, nothing stays invisible).
+const revealEls = document.querySelectorAll('.reveal-tilt');
+revealEls.forEach((el, i) => {
+  el.style.setProperty('--rd', `${(i % 6) * 0.08}s`);
+  el.classList.add('pre-reveal');
+});
+
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        entry.target.classList.remove('pre-reveal');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.remove('pre-reveal'));
+}
+// Safety net: force-reveal everything after 2.5s no matter what, in case the
+// observer never fires (odd layouts, hash-jump to #gallery, etc.)
+setTimeout(() => {
+  revealEls.forEach(el => { el.classList.remove('pre-reveal'); el.classList.add('in-view'); });
+}, 2500);
+
+// PARALLAX (on scroll) + TILT (on hover) for gallery images, combined into
+// a single transform per image so the two effects never fight each other.
+const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryState = new Map();
+
+galleryItems.forEach(item => {
+  const img = item.querySelector('img');
+  if (!img) return;
+  galleryState.set(img, { ty: 0, rx: 0, ry: 0 });
+
+  item.addEventListener('mousemove', e => {
+    const rect = item.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    const state = galleryState.get(img);
+    state.rx = (py * -8).toFixed(2);
+    state.ry = (px * 8).toFixed(2);
+    applyGalleryTransform(img, state);
+  });
+
+  item.addEventListener('mouseleave', () => {
+    const state = galleryState.get(img);
+    state.rx = 0;
+    state.ry = 0;
+    applyGalleryTransform(img, state);
+  });
+});
+
+function applyGalleryTransform(img, state) {
+  img.style.transform = `scale(1.08) translateY(${state.ty}px) rotateX(${state.rx}deg) rotateY(${state.ry}deg)`;
+}
+
+function updateGalleryParallax() {
+  const vh = window.innerHeight;
+  galleryItems.forEach(item => {
+    const img = item.querySelector('img');
+    if (!img) return;
+    const rect = item.getBoundingClientRect();
+    if (rect.bottom < -100 || rect.top > vh + 100) return; // skip offscreen items
+    const centerOffset = (rect.top + rect.height / 2) - vh / 2;
+    const ty = (centerOffset / vh) * 24; // gentle drift, ~±12px each way
+    const state = galleryState.get(img);
+    state.ty = ty.toFixed(2);
+    applyGalleryTransform(img, state);
+  });
+}
+
+let galleryTicking = false;
+window.addEventListener('scroll', () => {
+  if (!galleryTicking) {
+    requestAnimationFrame(() => { updateGalleryParallax(); galleryTicking = false; });
+    galleryTicking = true;
+  }
+}, { passive: true });
+updateGalleryParallax();
+
+
+
 document.querySelectorAll('a[href^="#"]').forEach(link=>{
   link.addEventListener('click', e=>{
     const target = document.querySelector(link.getAttribute('href'));
