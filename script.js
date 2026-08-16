@@ -50,16 +50,32 @@ revealEls.forEach((el, i) => {
   el.classList.add('pre-reveal');
 });
 
+// Repeating in/out animation as the user scrolls up or down: images fade +
+// slide in when they enter the viewport, and fade + slide back out (in the
+// direction of travel) when they leave it, then replay next time they
+// re-enter. No unobserve() call, so this keeps firing for the whole session.
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  document.documentElement.style.setProperty('--scroll-dir', y > lastScrollY ? '1' : '-1');
+  lastScrollY = y;
+}, { passive: true });
+
 if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver((entries, obs) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
-        entry.target.classList.remove('pre-reveal');
-        obs.unobserve(entry.target);
+        entry.target.classList.remove('pre-reveal', 'out-up', 'out-down');
+      } else {
+        // Leaving the viewport: exit toward the direction we're scrolling,
+        // so it feels like the photo is being carried off-screen.
+        const goingDown = getComputedStyle(document.documentElement).getPropertyValue('--scroll-dir').trim() !== '-1';
+        entry.target.classList.remove('in-view');
+        entry.target.classList.add(goingDown ? 'out-up' : 'out-down');
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
 
   revealEls.forEach(el => revealObserver.observe(el));
 } else {
@@ -68,7 +84,12 @@ if ('IntersectionObserver' in window) {
 // Safety net: force-reveal everything after 2.5s no matter what, in case the
 // observer never fires (odd layouts, hash-jump to #gallery, etc.)
 setTimeout(() => {
-  revealEls.forEach(el => { el.classList.remove('pre-reveal'); el.classList.add('in-view'); });
+  revealEls.forEach(el => {
+    if (!el.classList.contains('in-view')) {
+      el.classList.remove('pre-reveal');
+      el.classList.add('in-view');
+    }
+  });
 }, 2500);
 
 // PARALLAX (on scroll) + TILT (on hover) for gallery images, combined into
@@ -128,6 +149,23 @@ window.addEventListener('scroll', () => {
 updateGalleryParallax();
 
 
+
+// SCROLL PROGRESS BAR + BACK-TO-TOP button
+const scrollProgress = document.getElementById('scrollProgress');
+const backToTop = document.getElementById('backToTop');
+
+function updateScrollChrome(){
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+  if (scrollProgress) scrollProgress.style.width = pct + '%';
+  if (backToTop) backToTop.classList.toggle('show', window.scrollY > 500);
+}
+window.addEventListener('scroll', updateScrollChrome, { passive: true });
+updateScrollChrome();
+
+backToTop?.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 document.querySelectorAll('a[href^="#"]').forEach(link=>{
   link.addEventListener('click', e=>{

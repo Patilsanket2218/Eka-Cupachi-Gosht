@@ -630,7 +630,7 @@ body{
 
 /* SCROLL-REVEAL (safe-by-default: visible even if JS never runs) + PARALLAX/TILT via JS */
 .reveal-tilt{
-  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+  transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1), filter .7s ease;
   transition-delay:var(--rd, 0s);
 }
 .reveal-tilt.pre-reveal{
@@ -639,7 +639,23 @@ body{
 }
 .reveal-tilt.in-view{
   opacity:1;
-  transform:translateY(0) scale(1);
+  filter:blur(0);
+  transform:translateY(0) scale(1) rotate(0deg);
+}
+/* Scrolling further down and the tile left the viewport above/below: send it
+   drifting upward as it fades, so it feels carried off with the page. */
+.reveal-tilt.out-up{
+  opacity:0;
+  filter:blur(2px);
+  transition-delay:0s;
+  transform:translateY(-46px) scale(.92) rotate(-1.5deg);
+}
+/* Scrolling back up and the tile left the viewport: send it drifting down. */
+.reveal-tilt.out-down{
+  opacity:0;
+  filter:blur(2px);
+  transition-delay:0s;
+  transform:translateY(46px) scale(.92) rotate(1.5deg);
 }
 
 @media (max-width:900px){
@@ -650,6 +666,165 @@ body{
 @media (max-width:480px){
   .gallery-grid{grid-template-columns:1fr;}
   .gallery-item.big{grid-column:span 1;}
+}
+
+/* TESTIMONIALS */
+.testimonials-section{
+  position:relative;
+  padding:120px 0;
+  background:var(--sand);
+  overflow:hidden;
+}
+.testimonial-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:26px;
+  margin-top:50px;
+}
+.testimonial-card{
+  position:relative;
+  background:var(--cream);
+  border-radius:18px;
+  padding:34px 28px 28px;
+  box-shadow:0 14px 30px rgba(59,50,38,.12);
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.testimonial-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 22px 40px rgba(59,50,38,.18);
+}
+.testimonial-quote-mark{
+  font-family:var(--font-display);
+  font-size:3.2rem;
+  line-height:1;
+  color:var(--rust);
+  opacity:.5;
+  margin-bottom:6px;
+}
+.testimonial-text{
+  font-size:1rem;
+  color:var(--ink-soft);
+  min-height:74px;
+}
+.testimonial-person{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:18px;
+}
+.testimonial-avatar{
+  width:44px; height:44px;
+  border-radius:50%;
+  background:var(--rust);
+  color:#fff;
+  font-family:var(--font-dev);
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.testimonial-name{
+  margin:0;
+  font-weight:600;
+  color:var(--ink);
+}
+.testimonial-stars{
+  color:var(--rust);
+  letter-spacing:2px;
+  font-size:.85rem;
+}
+@media (max-width:900px){
+  .testimonial-grid{grid-template-columns:1fr;}
+}
+
+/* CTA BANNER */
+.cta-banner{
+  position:relative;
+  padding:80px 0;
+  background:linear-gradient(135deg, var(--rust), var(--rust-dark));
+  color:#fff;
+  text-align:center;
+}
+.cta-banner-title{
+  font-family:var(--font-display);
+  font-size:2.1rem;
+  margin-bottom:12px;
+}
+.cta-banner-sub{
+  max-width:520px;
+  margin:0 auto 26px;
+  opacity:.92;
+}
+.cta-banner .btn-cta{
+  background:var(--cream);
+  color:var(--rust-dark);
+  border-color:var(--cream);
+}
+.cta-banner .btn-cta:hover{
+  background:transparent;
+  color:#fff;
+}
+
+/* SCROLL PROGRESS BAR */
+.scroll-progress{
+  position:fixed;
+  top:0; left:0;
+  height:3px;
+  width:0%;
+  background:linear-gradient(90deg, var(--rust), var(--rust-dark));
+  z-index:10001;
+  transition:width .1s linear;
+}
+
+/* FLOATING BUTTONS */
+.float-btn{
+  position:fixed;
+  right:22px;
+  width:54px; height:54px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 24px rgba(59,50,38,.28);
+  z-index:9000;
+  border:none;
+  cursor:pointer;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1), opacity .3s ease, box-shadow .3s ease;
+}
+.float-btn:hover{
+  transform:translateY(-4px) scale(1.06);
+  box-shadow:0 16px 30px rgba(59,50,38,.34);
+}
+.float-btn svg{
+  width:26px; height:26px;
+  fill:#fff;
+}
+.float-whatsapp{
+  bottom:92px;
+  background:#25D366;
+  animation:floatBob 3s ease-in-out infinite;
+}
+.float-top{
+  bottom:24px;
+  background:var(--ink);
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(14px);
+}
+.float-top.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+@keyframes floatBob{
+  0%, 100%{ transform:translateY(0); }
+  50%{ transform:translateY(-6px); }
+}
+@media (max-width:600px){
+  .float-btn{width:48px; height:48px; right:16px;}
+  .float-whatsapp{bottom:80px;}
+  .float-top{bottom:20px;}
 }
 
 /* FOOTER */
@@ -733,10 +908,10 @@ body{
 }
 
 @media (prefers-reduced-motion: reduce){
-  .steam,.hero-scroll-cue span,.pl-steam,.preloader-text,.hero-kettle,.veg-dot,.ticker-track,.reveal-up{animation:none !important;}
+  .steam,.hero-scroll-cue span,.pl-steam,.preloader-text,.hero-kettle,.veg-dot,.ticker-track,.reveal-up,.float-whatsapp{animation:none !important;}
   .reveal-up{opacity:1; transform:none;}
   .reveal-tilt{transition:none;}
-  .reveal-tilt.pre-reveal{opacity:1; transform:none;}
+  .reveal-tilt.pre-reveal, .reveal-tilt.out-up, .reveal-tilt.out-down{opacity:1; filter:none; transform:none;}
   .gallery-item img{transition:none; transform:none !important;}
   html{scroll-behavior:auto;}
 }
