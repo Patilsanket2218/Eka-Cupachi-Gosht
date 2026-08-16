@@ -109,7 +109,7 @@ body{
 .site-nav.scrolled{
   background:rgba(237,233,221,.92);
   backdrop-filter:blur(10px);
-  padding:10px 0;
+  padding:0;
   box-shadow:0 4px 18px rgba(59,50,38,.08);
 }
 .navbar-brand{
@@ -903,4 +903,15 @@ body{
   .reveal-tilt.pre-reveal, .reveal-tilt.out-up, .reveal-tilt.out-down{opacity:1; filter:none; transform:none;}
   .gallery-item img{transition:none; transform:none !important;}
   html{scroll-behavior:auto;}
+}
+
+.navbar-logo{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  flex-shrink:0;
+}
+
+@media (max-width:600px){
+  .navbar-logo{width:54px; height:54px;}
 }
