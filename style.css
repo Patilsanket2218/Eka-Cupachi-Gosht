@@ -221,7 +221,7 @@ body{
   z-index:2;
   text-align:center;
   max-width:760px;
-  padding:0 20px 220px;
+  /* padding:0 20px 220px; */
 }
 .hero-eyebrow{
   font-size:.85rem;
@@ -846,7 +846,7 @@ body{
 }
 
 @media (max-width:768px){
-  .hero-content{padding-bottom:140px;}
+  /* .hero-content{padding-bottom:140px;} */
   .hero-kettle{width:220px;}
   .menu-card-panel{padding:26px 20px;}
   .story-section,.menu-section,.promise-section{padding:90px 0;}
@@ -862,7 +862,7 @@ body{
 @media (max-width:600px){
   .navbar-brand .brand-devanagari{font-size:1.15rem;}
   .navbar-brand .brand-sub{font-size:.55rem;}
-  .hero-content{padding:0 18px 120px;}
+  /* .hero-content{padding:0 18px 120px;} */
   .hero-eyebrow{font-size:.75rem;}
   .hero-tagline{font-size:.95rem;}
   .hero-cta-row{flex-direction:column; gap:12px; align-items:stretch;}
