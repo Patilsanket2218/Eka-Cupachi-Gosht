@@ -103,7 +103,7 @@ body{
 /* NAV */
 .site-nav{
   background:transparent;
-  padding:18px 0;
+  /* padding:18px 0; */
   transition:.4s ease;
 }
 .site-nav.scrolled{
@@ -913,5 +913,5 @@ body{
 }
 
 @media (max-width:600px){
-  .navbar-logo{width:54px; height:54px;}
+  .navbar-logo{width:80px; height:80px;}
 }
